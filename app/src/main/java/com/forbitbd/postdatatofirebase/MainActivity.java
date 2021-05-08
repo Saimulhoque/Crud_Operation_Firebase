@@ -2,6 +2,7 @@ package com.forbitbd.postdatatofirebase;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,12 +14,12 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import javax.xml.transform.Result;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button btnsave;
+    Button btnsave, btnpost;
     EditText etname,etroll, etcourse, etduration;
-    DatabaseReference reference;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +30,14 @@ public class MainActivity extends AppCompatActivity {
         etroll = findViewById(R.id.roll);
         etduration = findViewById(R.id.duration);
         btnsave = findViewById(R.id.save);
-
+        btnpost = findViewById(R.id.post);
+        btnpost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseDatabase db = FirebaseDatabase.getInstance();
                 DatabaseReference root = db.getReference("students");
                 root.child(roll).setValue(student);
-
-
 
                 Toast.makeText(getApplicationContext(),"Data Inserted",Toast.LENGTH_SHORT).show();
             }

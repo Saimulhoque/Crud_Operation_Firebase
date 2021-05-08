@@ -4,6 +4,9 @@ public class Student {
 
     String name, course, duration;
 
+    public Student() {
+    }
+
     public Student(String name, String course, String duration) {
         this.name = name;
         this.course = course;
