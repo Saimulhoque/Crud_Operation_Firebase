@@ -9,12 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import javax.xml.transform.Result;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
                 String course = etcourse.getText().toString();
                 String duration = etduration.getText().toString();
 
-                Student student = new Student(name,course,duration);
+                Student student = new Student(name,roll,course,duration);
 
                 FirebaseDatabase db = FirebaseDatabase.getInstance();
                 DatabaseReference root = db.getReference("students");
                 root.child(roll).setValue(student);
 
-                Toast.makeText(getApplicationContext(),"Data Inserted",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Data Inserted!",Toast.LENGTH_SHORT).show();
             }
         });
     }
